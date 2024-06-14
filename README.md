@@ -6,6 +6,7 @@ Introduction:
 -------------
 This Android App has been developed as part of the Assignment. 
 
+[weather_app2.webm](https://github.com/antostephen/WeatherApp/assets/172839891/777da9c8-cdec-4f02-871f-55dbc3764ed6)
 
 Overview:
 ---------------
@@ -31,7 +32,15 @@ Overview:
    * Display the Tempature
    * Weather Details
    * Hourly Weather Forecast
-   * Next 3 days Weather Forecast  
+   * Next 3 days Weather Forecast
+  
+
+UI / UX References:
+-------------------
+
+Figma community:
+
+https://www.figma.com/community/file/1264522121969062318/weather-app
 
 Unit Testing:
 ----------
