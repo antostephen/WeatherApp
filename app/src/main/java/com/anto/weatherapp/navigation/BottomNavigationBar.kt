@@ -1,4 +1,4 @@
-package com.anto.weatherapp.presentation.compossables.bottomnavigation
+package com.anto.weatherapp.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth

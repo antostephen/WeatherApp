@@ -1,4 +1,4 @@
-package com.anto.weatherapp.presentation.compossables.bottomnavigation
+package com.anto.weatherapp.navigation
 
 import com.anto.weatherapp.R
 import com.anto.weatherapp.presentation.compossables.screens.destinations.*
