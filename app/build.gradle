@@ -20,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId "com.anto.weatherapp"
-        minSdk 21
+        minSdk 29
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -79,6 +79,9 @@ dependencies {
     // Mockito for mocking
     testImplementation 'org.mockito:mockito-core:4.0.0'
 
+    implementation project(':features:posts')
+    //implementation project(':core')
+
     // Kotlin coroutines test library (if you're using coroutines)
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
 
@@ -132,5 +135,10 @@ dependencies {
 
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
-
 }
+
+/*tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        freeCompilerArgs += "-Xskip-metadata-version-check"
+    }
+}*/

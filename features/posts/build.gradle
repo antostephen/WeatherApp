@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp' version '1.6.10-1.0.2'
+}
+
+android {
+    namespace 'com.anto.posts'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 29
+        targetSdk 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    implementation project(':core')
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    implementation "androidx.navigation:navigation-compose:2.5.0-rc01"
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:2.41"
+    kapt "com.google.dagger:hilt-android-compiler:2.41"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+    //livedata
+    implementation 'androidx.compose.runtime:runtime-livedata:1.4.0-alpha01'
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.2.1")
+
+    //progress
+    implementation 'com.github.hitanshu-dhawan:CircularProgressBar-Compose:1.0.0-rc01'
+
+    // Navigation
+    implementation 'io.github.raamcosta.compose-destinations:core:1.4.4-beta'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.4.4-beta'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+}
