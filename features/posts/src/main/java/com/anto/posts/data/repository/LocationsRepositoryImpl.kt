@@ -1,11 +1,11 @@
-package com.anto.weatherapp.data.local
+package com.anto.posts.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.anto.weatherapp.data.local.mappers.toLocations
-import com.anto.weatherapp.data.local.mappers.toLocationsEntity
+import com.anto.posts.data.database.LocationsDao
+import com.anto.posts.data.local.mappers.toLocations
+import com.anto.posts.data.local.mappers.toLocationsEntity
 import com.anto.posts.domain.entity.Locations
-import com.anto.posts.domain.repository.LocationsRepository
 
 class LocationsRepositoryImpl(
     private val dao: LocationsDao

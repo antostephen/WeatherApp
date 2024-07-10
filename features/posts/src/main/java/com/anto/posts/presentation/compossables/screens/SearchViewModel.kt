@@ -4,8 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.anto.weatherapp.data.repository.WeatherRepository
-import com.anto.weatherapp.presentation.compossables.screens.home.HomeState
+import com.anto.posts.domain.repository.WeatherRepository
+import com.anto.posts.presentation.compossables.screens.home.HomeState
 import com.anto.core.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

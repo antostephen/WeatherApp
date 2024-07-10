@@ -1,6 +1,6 @@
-package com.anto.weatherapp.data.local.mappers
+package com.anto.posts.data.local.mappers
 
-import com.anto.weatherapp.data.local.LocationsEntity
+import com.anto.posts.data.database.LocationsEntity
 import com.anto.posts.domain.entity.Locations
 
 fun LocationsEntity.toLocations(): Locations {

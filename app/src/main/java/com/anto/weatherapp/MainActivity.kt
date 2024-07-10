@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.navigation.compose.rememberNavController
-import com.anto.weatherapp.navigation.BottomNavigationBar
-import com.anto.weatherapp.presentation.compossables.screens.NavGraphs
-import com.anto.weatherapp.ui.theme.WeatherTheme
+import com.anto.posts.presentation.compossables.bottomnavigation.BottomNavigationBar
+import com.anto.posts.presentation.compossables.screens.NavGraphs
+import com.anto.core.ui.theme.WeatherTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.rememberNavHostEngine
 import dagger.hilt.android.AndroidEntryPoint

@@ -16,7 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.anto.posts.R
-import com.anto.weatherapp.data.models.Alert
+import com.anto.posts.data.models.Alert
 import com.anto.posts.presentation.compossables.screens.home.HomeViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 

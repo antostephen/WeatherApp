@@ -1,4 +1,4 @@
-package com.anto.weatherapp.data.models
+package com.anto.posts.data.models
 
 import com.google.gson.annotations.SerializedName
 

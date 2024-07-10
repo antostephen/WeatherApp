@@ -1,6 +1,6 @@
-package com.anto.weatherapp.presentation.compossables.screens.home
+package com.anto.posts.presentation.compossables.screens.home
 
-import com.anto.weatherapp.data.response.WeatherResponse
+import com.anto.posts.domain.response.WeatherResponse
 
 data class HomeState(
     val isLoading : Boolean = false,

@@ -1,18 +1,27 @@
-package com.anto.weatherapp.data.remote
+package com.anto.posts.data.remote
 
-import com.anto.weatherapp.BuildConfig
-import com.anto.weatherapp.data.response.WeatherResponse
+import com.anto.posts.BuildConfig
+import com.anto.posts.domain.response.WeatherResponse
+import com.anto.posts.utils.Constants.VALUE_NO
+import com.anto.posts.utils.Constants.VALUE_YES
+import com.anto.posts.utils.Constants.FORECAST_JSON_FILENAME
+import com.anto.posts.utils.Constants.QUERY_Q
+import com.anto.posts.utils.Constants.QUERY_KEY
+import com.anto.posts.utils.Constants.QUERY_DAYS
+import com.anto.posts.utils.Constants.QUERY_AQI
+import com.anto.posts.utils.Constants.QUERY_ALERTS
+import com.anto.posts.utils.Constants.THREE_DAYS
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("forecast.json")
+    @GET(FORECAST_JSON_FILENAME)
     suspend fun getWeather(
-        @Query("q") query : String,
-        @Query("key") key : String = BuildConfig.API_KEY,
-        @Query("days") days : Int = 3,
-        @Query("aqi") aqi : String = "no",
-        @Query("alerts") alerts : String = "yes",
+        @Query(QUERY_Q) query : String,
+        @Query(QUERY_KEY) key : String = BuildConfig.API_KEY,
+        @Query(QUERY_DAYS) days : Int = THREE_DAYS,
+        @Query(QUERY_AQI) aqi : String = VALUE_NO,
+        @Query(QUERY_ALERTS) alerts : String = VALUE_YES,
     ) : WeatherResponse
 }

@@ -1,10 +1,10 @@
-package com.anto.weatherapp.data.repository
+package com.anto.posts.domain.repository
 
 import android.content.SharedPreferences
-import com.anto.weatherapp.data.response.WeatherResponse
-import com.anto.weatherapp.data.remote.ApiService
-import com.anto.weatherapp.utils.Constants.LOCATION_QUERY
-import com.anto.weatherapp.utils.Resource
+import com.anto.posts.domain.response.WeatherResponse
+import com.anto.posts.data.remote.ApiService
+import com.anto.core.utils.Constants.LOCATION_QUERY
+import com.anto.core.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import retrofit2.HttpException
 import java.io.IOException

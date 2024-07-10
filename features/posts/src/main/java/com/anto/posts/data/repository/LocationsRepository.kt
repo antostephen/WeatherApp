@@ -1,10 +1,9 @@
-package com.anto.posts.domain.repository
+package com.anto.posts.data.repository
 
 import androidx.lifecycle.LiveData
 import com.anto.posts.domain.entity.Locations
 
 interface LocationsRepository {
-
 
     suspend fun addLocation(location: Locations)
 

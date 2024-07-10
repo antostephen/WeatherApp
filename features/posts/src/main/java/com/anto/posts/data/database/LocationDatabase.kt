@@ -1,4 +1,4 @@
-package com.anto.weatherapp.data.local
+package com.anto.posts.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

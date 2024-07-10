@@ -30,6 +30,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.anto.posts.R
 import com.ramcosta.composedestinations.annotation.Destination
 import timber.log.Timber
 
@@ -89,7 +91,6 @@ fun SearchScreen(
                             end = androidx.compose.ui.geometry.Offset(90f, 0f)
                         )
                     )
-                // .padding(16.dp)
             )
 
             Row(
@@ -160,7 +161,7 @@ fun SearchBar(
         },
         placeholder = {
             Text(
-                text = "Enter city...",
+                text = stringResource(id = R.string.enter_city),
                 color = Color.LightGray
             )
         },

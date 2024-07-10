@@ -46,7 +46,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -56,7 +58,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.anto.posts.R
-import com.anto.weatherapp.data.models.Forecastday
+import com.anto.posts.data.models.Forecastday
 import com.anto.posts.domain.entity.Locations
 import com.anto.posts.presentation.compossables.screens.home.components.DailyItem
 import com.anto.posts.presentation.compossables.screens.home.components.DetailsItem
@@ -89,13 +91,13 @@ fun HomeScreen(
             contentAlignment = Alignment.Center
         ) {
             CircularProgressBar(
-                modifier = Modifier.size(120.dp),
+                modifier = Modifier.size(dimensionResource(R.dimen.padding_120dp)),
                 progress = 30f,
                 progressMax = 100f,
                 progressBarColor = Color.Blue,
-                progressBarWidth = 20.dp,
+                progressBarWidth = dimensionResource(R.dimen.padding_20dp),
                 backgroundProgressBarColor = Color.Gray,
-                backgroundProgressBarWidth = 10.dp,
+                backgroundProgressBarWidth = dimensionResource(R.dimen.padding_10dp),
                 roundBorder = true,
                 startAngle = 90f
             )
@@ -126,14 +128,14 @@ fun HomeScreen(
             modifier = Modifier.fillMaxWidth()
         ) {
             LazyRow(
-                contentPadding = PaddingValues(end = 8.dp),
+                contentPadding = PaddingValues(end = dimensionResource(R.dimen.padding_8dp)),
                 content = {
                     items(localLocations) { location ->
 
                         Card(
                             modifier = Modifier
-                                .padding(start = 4.dp)
-                                .height(30.dp)
+                                .padding(start = dimensionResource(R.dimen.padding_4dp))
+                                .height(dimensionResource(R.dimen.padding_30dp))
                                 .clickable {
                                     viewModel.saveToSharedPrefs(location.locationName)
                                     Toast
@@ -146,12 +148,12 @@ fun HomeScreen(
                             backgroundColor = if (location.locationName == viewModel.currentLocation.value) {
                                 Blue
                             } else Gray,
-                            elevation = 5.dp,
-                            shape = RoundedCornerShape(8.dp)
+                            elevation = dimensionResource(R.dimen.padding_5dp),
+                            shape = RoundedCornerShape(dimensionResource(R.dimen.padding_8dp))
                         ) {
                             Row(
                                 modifier = Modifier
-                                    .padding(start = 8.dp, end = 8.dp),
+                                    .padding(start = dimensionResource(R.dimen.padding_8dp), end = dimensionResource(R.dimen.padding_8dp)),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
@@ -186,17 +188,17 @@ fun HomeScreen(
             //Add Button
             Card(
                 modifier = Modifier
-                    .padding(start = 4.dp)
-                    .height(30.dp)
+                    .padding(start = dimensionResource(R.dimen.padding_8dp))
+                    .height(dimensionResource(R.dimen.padding_30dp))
                     .clickable {
                         locationDialog.value = true
                     }
                     .background(Blue)
-                    .width(30.dp)
+                    .width(dimensionResource(R.dimen.padding_30dp))
             ) {
                 Icon(
                     Icons.Default.Add,
-                    contentDescription = "Add City",
+                    contentDescription = stringResource(id = R.string.add_city),
                     modifier = Modifier.size(ButtonDefaults.IconSize)
                 )
             }
@@ -206,16 +208,16 @@ fun HomeScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(15.dp),
+                .padding(dimensionResource(R.dimen.padding_15dp)),
             horizontalArrangement = Arrangement.Center
         ) {
             Icon(
-                modifier = Modifier.size(35.dp),
+                modifier = Modifier.size(dimensionResource(R.dimen.padding_35dp)),
                 imageVector = Icons.Outlined.LocationOn,
                 contentDescription = null,
                 tint = Color.White
             )
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_8dp)))
 
             Text(
                 text = "${state.data?.location?.name}, ${state.data?.location?.country} ",
@@ -225,12 +227,9 @@ fun HomeScreen(
 
         }
 
-        //Spacer(modifier = Modifier.height(8.dp))
-
         Column(
             modifier = Modifier
-                //.aspectRatio(2f)
-                .padding(end = 16.dp),
+                .padding(end = dimensionResource(R.dimen.padding_16dp)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AsyncImage(
@@ -240,11 +239,11 @@ fun HomeScreen(
                     .build(),
                 contentDescription = "${state.data?.current?.condition?.text}",
                 modifier = Modifier
-                    .size(140.dp)
+                    .size(dimensionResource(R.dimen.padding_140dp))
             )
 
             Column(
-                modifier = Modifier.padding(start = 8.dp),
+                modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_8dp)),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
@@ -253,8 +252,8 @@ fun HomeScreen(
                     color = Color.White,
                     modifier = Modifier
                         .padding(
-                            start = 18.dp,
-                            end = 18.dp,
+                            start = dimensionResource(R.dimen.padding_18dp),
+                            end = dimensionResource(R.dimen.padding_18dp),
                         )
                 )
                 Text(
@@ -263,8 +262,8 @@ fun HomeScreen(
                     color = Color.White,
                     modifier = Modifier
                         .padding(
-                            start = 18.dp,
-                            bottom = 8.dp
+                            start = dimensionResource(R.dimen.padding_18dp),
+                            bottom =  dimensionResource(R.dimen.padding_8dp)
                         )
                 )
             }
@@ -279,20 +278,20 @@ fun HomeScreen(
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .height(220.dp)
-                        .width(220.dp)
+                        .height(dimensionResource(R.dimen.padding_220dp))
+                        .width(dimensionResource(R.dimen.padding_220dp))
                 )
             }
 
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_8dp)))
 
         //Weather details
         Column(
             modifier = Modifier
                 .clip(
-                    shape = RoundedCornerShape(10.dp)
+                    shape = RoundedCornerShape(dimensionResource(R.dimen.padding_10dp))
                 )
                 .background(Color.Transparent)
         ) {
@@ -304,40 +303,39 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 DetailsItem(
-                    text1 = "Feels Like",
+                    text1 = stringResource(R.string.feels_like),
                     textValue = "${state.data?.current?.feelslikeC}${0x00B0.toChar()}"
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_8dp)))
                 DetailsItem(
-                    text1 = "Wind Speed",
+                    text1 = stringResource(R.string.feels_like),
                     textValue = "${state.data?.current?.windKph} kp/h"
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_8dp)))
                 DetailsItem(
-                    text1 = "Pressure",
+                    text1 = stringResource(R.string.pressure),
                     textValue = "${state.data?.current?.pressureMb} Mb"
                 )
-
             }
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(4.dp),
+                    .padding(dimensionResource(R.dimen.padding_4dp)),
                 horizontalArrangement = Arrangement.Center
             ) {
                 DetailsItem(
-                    text1 = "Humidity",
+                    text1 = stringResource(R.string.humidity),
                     textValue = "${state.data?.current?.humidity}%"
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_8dp)))
                 DetailsItem(
-                    text1 = "Wind direction",
+                    text1 = stringResource(R.string.wind_direction),
                     textValue = "${state.data?.current?.windDir}"
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_8dp)))
                 DetailsItem(
-                    text1 = "Uv Index",
+                    text1 = stringResource(R.string.uv_index),
                     textValue = "${state.data?.current?.uv}"
                 )
 
@@ -346,7 +344,7 @@ fun HomeScreen(
 
         //Hourly Weather
         LazyRow(
-            contentPadding = PaddingValues(horizontal = 8.dp),
+            contentPadding = PaddingValues(horizontal = dimensionResource(R.dimen.padding_8dp)),
             content = {
                 val hourForecast: List<Forecastday> =
                     state.data?.forecast?.forecastday ?: emptyList()
@@ -366,12 +364,12 @@ fun HomeScreen(
         //Next 3 days prediction
         Column(
             modifier = Modifier
-                .size(height = 250.dp, width = 480.dp)
-                .padding(start = 16.dp),
+                .size(height = dimensionResource(R.dimen.padding_250dp), width = dimensionResource(R.dimen.padding_480dp))
+                .padding(start = dimensionResource(R.dimen.padding_16dp)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             LazyColumn(
-                contentPadding = PaddingValues(vertical = 2.dp),
+                contentPadding = PaddingValues(vertical = dimensionResource(R.dimen.padding_2dp)),
                 content = {
                     val dailyForecast: List<Forecastday> =
                         state.data?.forecast?.forecastday ?: emptyList()
@@ -391,7 +389,7 @@ fun HomeScreen(
             AlertDialog(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
+                    .padding(dimensionResource(R.dimen.padding_8dp)),
                 onDismissRequest = { locationDialog.value = false },
                 title = {
                     Text(
@@ -401,8 +399,8 @@ fun HomeScreen(
                             textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold
                         ),
-                        text = "Add a Location",
-                        modifier = Modifier.padding(8.dp),
+                        text = stringResource(R.string.add_location),
+                        modifier = Modifier.padding(dimensionResource(R.dimen.padding_8dp)),
                     )
                 },
                 text = {
@@ -412,7 +410,7 @@ fun HomeScreen(
                             viewModel.setLocationDialogValue(it)
                         },
                         textStyle = TextStyle(color = Color.White),
-                        placeholder = { Text(text = "Bengaluru", color = Color.LightGray) },
+                        placeholder = { Text(text = stringResource(R.string.bengaluru), color = Color.LightGray) },
                     )
                 },
                 confirmButton = {
@@ -429,7 +427,7 @@ fun HomeScreen(
                 },
                 backgroundColor = Color.Black,
                 contentColor = Color.White,
-                shape = RoundedCornerShape(12.dp)
+                shape = RoundedCornerShape(dimensionResource(R.dimen.padding_12dp))
             )
 
         }

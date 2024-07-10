@@ -1,14 +1,14 @@
 package com.anto.weatherapp
 
 import android.content.SharedPreferences
-import com.anto.weatherapp.data.models.Alerts
-import com.anto.weatherapp.data.models.Condition
-import com.anto.weatherapp.data.models.Current
-import com.anto.weatherapp.data.models.Forecast
-import com.anto.weatherapp.data.models.Location
-import com.anto.weatherapp.data.remote.ApiService
-import com.anto.weatherapp.data.repository.WeatherRepository
-import com.anto.weatherapp.data.response.WeatherResponse
+import com.anto.posts.data.models.Alerts
+import com.anto.posts.data.models.Condition
+import com.anto.posts.data.models.Current
+import com.anto.posts.data.models.Forecast
+import com.anto.posts.data.models.Location
+import com.anto.posts.data.remote.ApiService
+import com.anto.posts.domain.repository.WeatherRepository
+import com.anto.posts.domain.response.WeatherResponse
 import com.anto.weatherapp.utils.Constants.LOCATION_QUERY
 import com.anto.weatherapp.utils.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi

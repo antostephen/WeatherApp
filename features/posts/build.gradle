@@ -7,11 +7,11 @@ plugins {
 
 android {
     namespace 'com.anto.posts'
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
         minSdk 29
-        targetSdk 33
+        targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -34,7 +34,13 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    def lifecycle_version = "2.6.1"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.12.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
@@ -42,12 +48,28 @@ dependencies {
 
     implementation project(':core')
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.6.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation "androidx.navigation:navigation-compose:2.5.0-rc01"
+
+    // Navigation
+    implementation 'io.github.raamcosta.compose-destinations:core:1.4.4-beta'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.4.4-beta'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.3"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3"
+
+    // Room
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:2.4.3"
 
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:2.41"
