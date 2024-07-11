@@ -1,4 +1,4 @@
-package com.anto.posts.domain.entity
+package com.anto.posts.domain.entities
 
 data class Locations(
 

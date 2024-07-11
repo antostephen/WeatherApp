@@ -1,7 +1,7 @@
 package com.anto.posts.data.repository
 
 import androidx.lifecycle.LiveData
-import com.anto.posts.domain.entity.Locations
+import com.anto.posts.domain.entities.Locations
 
 interface LocationsRepository {
 

@@ -1,7 +1,7 @@
 package com.anto.posts.data.local.mappers
 
 import com.anto.posts.data.database.LocationsEntity
-import com.anto.posts.domain.entity.Locations
+import com.anto.posts.domain.entities.Locations
 
 fun LocationsEntity.toLocations(): Locations {
     return Locations(

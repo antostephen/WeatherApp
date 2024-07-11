@@ -52,14 +52,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.anto.posts.R
 import com.anto.posts.data.models.Forecastday
-import com.anto.posts.domain.entity.Locations
+import com.anto.posts.domain.entities.Locations
 import com.anto.posts.presentation.compossables.screens.home.components.DailyItem
 import com.anto.posts.presentation.compossables.screens.home.components.DetailsItem
 import com.anto.core.ui.theme.Blue

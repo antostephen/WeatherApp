@@ -5,9 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.anto.posts.domain.repository.WeatherRepository
-import com.anto.posts.domain.entity.Locations
+import com.anto.posts.domain.entities.Locations
 import com.anto.posts.data.repository.LocationsRepository
 import com.anto.core.utils.Resource
+import com.anto.posts.domain.usecase.WeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val weatherRepo: WeatherRepository,
-    private val repository: LocationsRepository
+    private val repository: LocationsRepository,
+    private val weatherUseCase: WeatherUseCase
 ) : ViewModel() {
 
     private val _locationDialogValue = mutableStateOf("")
@@ -51,7 +53,7 @@ class HomeViewModel @Inject constructor(
             _state.value = state.value.copy(
                 isLoading = true
             )
-            val result = weatherRepo.getWeatherData(location)
+            val result = weatherUseCase.getWeatherData(location)
             println("WeatherReport : " + result.data.toString())
             when (result) {
                 is Resource.Success<*> -> {

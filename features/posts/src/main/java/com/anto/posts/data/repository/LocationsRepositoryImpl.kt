@@ -5,7 +5,7 @@ import androidx.lifecycle.Transformations
 import com.anto.posts.data.database.LocationsDao
 import com.anto.posts.data.local.mappers.toLocations
 import com.anto.posts.data.local.mappers.toLocationsEntity
-import com.anto.posts.domain.entity.Locations
+import com.anto.posts.domain.entities.Locations
 
 class LocationsRepositoryImpl(
     private val dao: LocationsDao

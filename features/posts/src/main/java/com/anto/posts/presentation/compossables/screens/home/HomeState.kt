@@ -1,8 +1,8 @@
 package com.anto.posts.presentation.compossables.screens.home
 
-import com.anto.posts.domain.response.WeatherResponse
+import com.anto.posts.domain.entities.WeatherEntity
 
 data class HomeState(
-    val isLoading : Boolean = false,
-    val data: WeatherResponse? = null
+    val isLoading: Boolean = false,
+    val data: WeatherEntity? = null
 )
