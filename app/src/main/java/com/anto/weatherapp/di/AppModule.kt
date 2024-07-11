@@ -7,8 +7,9 @@ import androidx.room.Room
 import com.anto.posts.data.database.LocationDatabase
 import com.anto.posts.data.repository.LocationsRepositoryImpl
 import com.anto.posts.data.remote.ApiService
-import com.anto.posts.domain.repository.WeatherRepository
 import com.anto.posts.data.repository.LocationsRepository
+import com.anto.posts.domain.mappers.WeatherMapper
+import com.anto.posts.domain.repository.WeatherRepositoryImpl
 import com.anto.weatherapp.constants.Constants.BASE_URL
 import com.anto.weatherapp.constants.Constants.LOCATION_QUERY
 import dagger.Module
@@ -36,8 +37,9 @@ object AppModule {
     @Singleton
     fun provideWeatherRepository(
         apiService: ApiService,
-        sharedPreferences: SharedPreferences
-    ) = WeatherRepository(apiService, sharedPreferences)
+        sharedPreferences: SharedPreferences,
+        weatherMapper : WeatherMapper
+    ) = WeatherRepositoryImpl(apiService, sharedPreferences, weatherMapper)
 
     @Provides
     @Singleton

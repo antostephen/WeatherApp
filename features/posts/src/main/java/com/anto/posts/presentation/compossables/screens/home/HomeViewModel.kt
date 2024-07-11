@@ -1,5 +1,6 @@
 package com.anto.posts.presentation.compossables.screens.home
 
+import android.content.SharedPreferences
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,12 @@ import com.anto.posts.domain.entities.Locations
 import com.anto.posts.data.repository.LocationsRepository
 import com.anto.core.utils.Resource
 import com.anto.posts.domain.usecase.WeatherUseCase
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,8 +24,19 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val weatherRepo: WeatherRepository,
     private val repository: LocationsRepository,
-    private val weatherUseCase: WeatherUseCase
+    private val weatherUseCase: WeatherUseCase,
+    private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
+
+    @Module
+    @InstallIn(ViewModelComponent::class)
+    object ViewModelModule {
+        @Provides
+        fun provideHomeViewModel(weatherRepo: WeatherRepository, repository: LocationsRepository,
+                                 weatherUseCase: WeatherUseCase, dispatcher: CoroutineDispatcher): HomeViewModel {
+            return HomeViewModel(weatherRepo, repository, weatherUseCase, dispatcher)
+        }
+    }
 
     private val _locationDialogValue = mutableStateOf("")
     val locationDialogValue: State<String> = _locationDialogValue

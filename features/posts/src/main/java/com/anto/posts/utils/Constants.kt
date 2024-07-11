@@ -11,4 +11,5 @@ object Constants {
     const val QUERY_AQI = "aqi"
     const val QUERY_ALERTS = "alerts"
     const val THREE_DAYS = 3
+    const val BENGALURU = "Bengaluru"
 }

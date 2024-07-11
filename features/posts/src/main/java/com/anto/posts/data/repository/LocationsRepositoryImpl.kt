@@ -1,7 +1,7 @@
 package com.anto.posts.data.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.LiveData
 import com.anto.posts.data.database.LocationsDao
 import com.anto.posts.data.local.mappers.toLocations
 import com.anto.posts.data.local.mappers.toLocationsEntity

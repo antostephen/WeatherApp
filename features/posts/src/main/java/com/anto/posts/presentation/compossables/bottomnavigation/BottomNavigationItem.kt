@@ -1,7 +1,7 @@
-package com.anto.weatherapp.presentation.compossables.bottomnavigation
+package com.anto.posts.presentation.compossables.bottomnavigation
 
-import com.anto.weatherapp.R
-import com.anto.weatherapp.presentation.compossables.screens.destinations.*
+import com.anto.posts.R
+import com.anto.posts.presentation.compossables.screens.destinations.*
 
 sealed class BottomNavigationItem(var title: String, var icon: Int,var destination: Destination) {
     object Home : BottomNavigationItem("Home", R.drawable.ic_baseline_home_24,HomeScreenDestination)

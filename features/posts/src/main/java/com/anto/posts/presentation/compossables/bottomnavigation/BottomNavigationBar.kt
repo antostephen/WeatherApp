@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.anto.weatherapp.presentation.compossables.bottomnavigation.BottomNavigationItem
+import com.anto.posts.presentation.compossables.bottomnavigation.BottomNavigationItem
 import com.anto.core.ui.theme.*
 
 @Composable

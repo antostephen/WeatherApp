@@ -1,16 +1,17 @@
 package com.anto.weatherapp
 
 import android.content.SharedPreferences
+import com.anto.core.utils.Resource
 import com.anto.posts.data.models.Alerts
 import com.anto.posts.data.models.Condition
 import com.anto.posts.data.models.Current
 import com.anto.posts.data.models.Forecast
 import com.anto.posts.data.models.Location
 import com.anto.posts.data.remote.ApiService
+import com.anto.posts.domain.mappers.WeatherMapper
 import com.anto.posts.domain.repository.WeatherRepository
 import com.anto.posts.domain.response.WeatherResponse
-import com.anto.weatherapp.utils.Constants.LOCATION_QUERY
-import com.anto.weatherapp.utils.Resource
+import com.anto.weatherapp.constants.Constants.LOCATION_QUERY
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -34,6 +35,7 @@ class WeatherRepositoryTest {
     private lateinit var apiService: ApiService
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var weatherRepository: WeatherRepository
+    private lateinit var weatherMapper: WeatherMapper
     private val weatherResponse = WeatherResponse(
         Location(
             name = "Bengaluru",
@@ -79,8 +81,8 @@ class WeatherRepositoryTest {
         apiService = mock(ApiService::class.java)
         sharedPreferences = mock(SharedPreferences::class.java)
         `when`(sharedPreferences.getString(LOCATION_QUERY, "Bengaluru")).thenReturn("Bengaluru")
-
-        weatherRepository = WeatherRepository(apiService, sharedPreferences)
+        weatherMapper = mock(WeatherMapper::class.java)
+        weatherRepository = WeatherRepository(apiService, sharedPreferences, weatherMapper)
     }
 
     @Test
