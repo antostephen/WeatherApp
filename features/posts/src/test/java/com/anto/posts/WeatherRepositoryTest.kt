@@ -1,4 +1,4 @@
-package com.anto.weatherapp
+package com.anto.posts
 
 import android.content.SharedPreferences
 import com.anto.core.utils.Resource
@@ -10,8 +10,9 @@ import com.anto.posts.data.models.Location
 import com.anto.posts.data.remote.ApiService
 import com.anto.posts.domain.mappers.WeatherMapper
 import com.anto.posts.domain.repository.WeatherRepository
+import com.anto.posts.domain.repository.WeatherRepositoryImpl
 import com.anto.posts.domain.response.WeatherResponse
-import com.anto.weatherapp.constants.Constants.LOCATION_QUERY
+import com.anto.posts.utils.Constants.LOCATION_QUERY
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -82,7 +83,7 @@ class WeatherRepositoryTest {
         sharedPreferences = mock(SharedPreferences::class.java)
         `when`(sharedPreferences.getString(LOCATION_QUERY, "Bengaluru")).thenReturn("Bengaluru")
         weatherMapper = mock(WeatherMapper::class.java)
-        weatherRepository = WeatherRepository(apiService, sharedPreferences, weatherMapper)
+        weatherRepository = WeatherRepositoryImpl(apiService, sharedPreferences, weatherMapper)
     }
 
     @Test
