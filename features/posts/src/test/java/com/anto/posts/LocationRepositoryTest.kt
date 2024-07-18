@@ -3,7 +3,7 @@ package com.anto.posts
 import androidx.lifecycle.LiveData
 import com.anto.posts.data.repository.LocationsRepository
 import com.anto.posts.domain.entities.Locations
-import com.anto.posts.utils.Constants
+import com.anto.posts.constants.Constants
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertNotNull

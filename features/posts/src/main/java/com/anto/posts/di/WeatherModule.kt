@@ -11,6 +11,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Qualifier
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -26,8 +29,10 @@ object WeatherModule {
     }
 
     @Provides
-    fun provideWeatherRepository(apiService: ApiService, sharedPreferences: SharedPreferences,
-                                 weatherMapper: WeatherMapper): WeatherRepositoryImpl {
+    fun provideWeatherRepository(
+        apiService: ApiService, sharedPreferences: SharedPreferences,
+        weatherMapper: WeatherMapper
+    ): WeatherRepositoryImpl {
         return WeatherRepositoryImpl(apiService, sharedPreferences, weatherMapper)
     }
 }

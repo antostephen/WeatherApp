@@ -6,7 +6,7 @@ import com.anto.core.utils.Resource
 import com.anto.posts.data.remote.ApiService
 import com.anto.posts.domain.entities.WeatherEntity
 import com.anto.posts.domain.mappers.WeatherMapper
-import com.anto.posts.utils.Constants.BENGALURU
+import com.anto.posts.constants.Constants.BENGALURU
 import kotlinx.coroutines.flow.MutableStateFlow
 import retrofit2.HttpException
 import java.io.IOException

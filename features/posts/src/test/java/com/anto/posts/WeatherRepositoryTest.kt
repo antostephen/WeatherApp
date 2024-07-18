@@ -12,7 +12,7 @@ import com.anto.posts.domain.mappers.WeatherMapper
 import com.anto.posts.domain.repository.WeatherRepository
 import com.anto.posts.domain.repository.WeatherRepositoryImpl
 import com.anto.posts.domain.response.WeatherResponse
-import com.anto.posts.utils.Constants.LOCATION_QUERY
+import com.anto.posts.constants.Constants.LOCATION_QUERY
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -116,7 +116,7 @@ class WeatherRepositoryTest {
         `when`(apiService.getWeather("Bengaluru")).thenThrow(httpException)
         val result = weatherRepository.getWeatherData("Bengaluru")
         assertTrue(result is Resource.Error)
-        assertTrue((result as Resource.Error).message!!.startsWith("Error!"))
+        (result as Resource.Error).message?.let { assertTrue(it.startsWith("Error!")) }
     }
 
     @Test

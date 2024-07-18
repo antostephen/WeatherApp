@@ -4,16 +4,20 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.anto.posts.domain.repository.WeatherRepository
 import com.anto.posts.presentation.compossables.screens.home.HomeState
 import com.anto.core.utils.Resource
+import com.anto.posts.di.MainDispatcher
+import com.anto.posts.domain.usecase.WeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val repository: WeatherRepository
+    private val fetchWeatherUseCase: WeatherUseCase,
+    @MainDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
     private val _query = mutableStateOf("")
     val query: State<String> = _query
@@ -29,12 +33,11 @@ class SearchViewModel @Inject constructor(
     fun search(location: String) {
         _query.value = location
 
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             _state.value = state.value.copy(
                 isLoading = true
             )
-            val result = repository.getWeatherData(_query.value)
-            when (result) {
+            when (val result = fetchWeatherUseCase.getWeatherData(_query.value)) {
                 is Resource.Success<*> -> {
                     _state.value = state.value.copy(
                         isLoading = false,

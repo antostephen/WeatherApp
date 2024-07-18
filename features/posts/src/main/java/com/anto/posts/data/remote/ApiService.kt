@@ -2,15 +2,15 @@ package com.anto.posts.data.remote
 
 import com.anto.posts.BuildConfig
 import com.anto.posts.domain.response.WeatherResponse
-import com.anto.posts.utils.Constants.VALUE_NO
-import com.anto.posts.utils.Constants.VALUE_YES
-import com.anto.posts.utils.Constants.FORECAST_JSON_FILENAME
-import com.anto.posts.utils.Constants.QUERY_Q
-import com.anto.posts.utils.Constants.QUERY_KEY
-import com.anto.posts.utils.Constants.QUERY_DAYS
-import com.anto.posts.utils.Constants.QUERY_AQI
-import com.anto.posts.utils.Constants.QUERY_ALERTS
-import com.anto.posts.utils.Constants.THREE_DAYS
+import com.anto.posts.constants.Constants.VALUE_NO
+import com.anto.posts.constants.Constants.VALUE_YES
+import com.anto.posts.constants.Constants.FORECAST_JSON_FILENAME
+import com.anto.posts.constants.Constants.QUERY_Q
+import com.anto.posts.constants.Constants.QUERY_KEY
+import com.anto.posts.constants.Constants.QUERY_DAYS
+import com.anto.posts.constants.Constants.QUERY_AQI
+import com.anto.posts.constants.Constants.QUERY_ALERTS
+import com.anto.posts.constants.Constants.THREE_DAYS
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -53,10 +53,14 @@ fun AlertScreen(
             content = {
                 val alerts: List<Alert> = state.data?.alerts?.alert ?: emptyList()
                 items(alerts) { details ->
-                    AlertItem(
-                        severity = details.severity!!,
-                        headline = details.headline!!
-                    )
+                    details.severity?.let {
+                        details.headline?.let { it1 ->
+                            AlertItem(
+                                severity = it,
+                                headline = it1
+                            )
+                        }
+                    }
                 }
             }
         )

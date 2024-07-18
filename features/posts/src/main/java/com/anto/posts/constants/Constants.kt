@@ -1,4 +1,4 @@
-package com.anto.posts.utils
+package com.anto.posts.constants
 
 object Constants {
 

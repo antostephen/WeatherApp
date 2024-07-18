@@ -1,14 +1,13 @@
 package com.anto.posts.presentation.compossables.screens.home
 
-import android.content.SharedPreferences
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.anto.posts.domain.repository.WeatherRepository
 import com.anto.posts.domain.entities.Locations
-import com.anto.posts.data.repository.LocationsRepository
 import com.anto.core.utils.Resource
+import com.anto.posts.di.MainDispatcher
+import com.anto.posts.domain.usecase.LocationUseCase
 import com.anto.posts.domain.usecase.WeatherUseCase
 import dagger.Module
 import dagger.Provides
@@ -16,25 +15,25 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val weatherRepo: WeatherRepository,
-    private val repository: LocationsRepository,
-    private val weatherUseCase: WeatherUseCase,
-    private val dispatcher: CoroutineDispatcher
+    private val fetchWeatherUseCase: WeatherUseCase,
+    private val fetchLocationUseCase: LocationUseCase,
+    @MainDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
     @Module
     @InstallIn(ViewModelComponent::class)
     object ViewModelModule {
         @Provides
-        fun provideHomeViewModel(weatherRepo: WeatherRepository, repository: LocationsRepository,
+        fun provideHomeViewModel(locationUseCase: LocationUseCase,
                                  weatherUseCase: WeatherUseCase, dispatcher: CoroutineDispatcher): HomeViewModel {
-            return HomeViewModel(weatherRepo, repository, weatherUseCase, dispatcher)
+            return HomeViewModel(weatherUseCase, locationUseCase, dispatcher)
         }
     }
 
@@ -44,17 +43,16 @@ class HomeViewModel @Inject constructor(
     private val _currentLocation = mutableStateOf("")
     val currentLocation: State<String> = _currentLocation
 
-    val allLocations = repository.getAllLocations()
+    val allLocations = fetchLocationUseCase.getAllLocations()
 
     private val _state = mutableStateOf(HomeState())
     val state: State<HomeState> = _state
 
-    private fun notifyCurrentLocation(): StateFlow<String?> = weatherRepo.currentLocationQuery
-
+    private fun notifyCurrentLocation(): StateFlow<String?> = fetchWeatherUseCase.getCurrentLocationQuery()
 
     init {
         viewModelScope.launch {
-            weatherRepo.currentLocationQuery.collect {
+            fetchWeatherUseCase.getCurrentLocationQuery().collect {
                 _currentLocation.value = it.toString()
             }
         }
@@ -66,11 +64,11 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getWeatherDetails(location: String) {
-        viewModelScope.launch {
+        viewModelScope.launch (dispatcher) {
             _state.value = state.value.copy(
                 isLoading = true
             )
-            val result = weatherUseCase.getWeatherData(location)
+            val result = fetchWeatherUseCase.getWeatherData(location)
             println("WeatherReport : " + result.data.toString())
             when (result) {
                 is Resource.Success<*> -> {
@@ -93,7 +91,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun saveToSharedPrefs(locationName: String) {
-        weatherRepo.saveToSharedPrefs(locationName)
+        fetchWeatherUseCase.saveLocation(locationName)
     }
 
     fun setLocationDialogValue(text: String) {
@@ -101,13 +99,13 @@ class HomeViewModel @Inject constructor(
     }
 
     suspend fun deleteLocation(location: Locations) {
-        repository.deleteLocation(location)
+        fetchLocationUseCase.deleteLocation(location)
     }
 
     fun addLocation() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             if (locationDialogValue.value.isNotBlank()) {
-                repository.addLocation(
+                fetchLocationUseCase.addLocation(
                     Locations(
                         locationDialogValue.value
                     )

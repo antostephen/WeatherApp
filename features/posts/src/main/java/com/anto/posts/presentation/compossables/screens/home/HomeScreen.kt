@@ -349,11 +349,13 @@ fun HomeScreen(
                     state.data?.forecast?.forecastday ?: emptyList()
                 items(hourForecast) {
                     it.hour.forEach { hour ->
-                        HourItem(
-                            icon = "https:${hour.condition?.icon}",
-                            degrees = hour.tempC?.toFloat() ?: 0F,
-                            time = hour.time!!,
-                        )
+                        hour.time?.let { it1 ->
+                            HourItem(
+                                icon = "https:${hour.condition?.icon}",
+                                degrees = hour.tempC?.toFloat() ?: 0F,
+                                time = it1,
+                            )
+                        }
                     }
 
                 }
@@ -374,11 +376,13 @@ fun HomeScreen(
                         state.data?.forecast?.forecastday ?: emptyList()
                     items(dailyForecast) { details ->
                         details.day.avgtempC?.toFloat()?.let { it1 ->
-                            DailyItem(
-                                day = dayOfTheWeek(details.date!!),
-                                degrees = it1,
-                                icon = "https:${details.day.condition?.icon}"
-                            )
+                            details.date?.let { dayOfTheWeek(it) }?.let {
+                                DailyItem(
+                                    day = it,
+                                    degrees = it1,
+                                    icon = "https:${details.day.condition?.icon}"
+                                )
+                            }
                         }
                     }
                 })
