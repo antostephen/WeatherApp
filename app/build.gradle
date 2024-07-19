@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 32
 
     applicationVariants.all { variant ->
         kotlin.sourceSets {
@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId "com.anto.weatherapp"
         minSdk 29
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
